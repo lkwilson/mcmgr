@@ -1,8 +1,5 @@
-# This file is sourced by the scripts
+# This file is sourced by bash in the scripts. See README.md for information.
 
-# Don't expand user, this is passed as ssh command
-bak_dir="~op/drive/a/mc_backup/svr/templ"
-tmux_sesh=mc-svr-templ
-
-mc_jar=minecraft_server.1.16.1.jar
-
+mc_server_id=unique-mc-id
+mc_root_backup_dir=/path/to/backup/dir
+mc_server_jar=/path/to/minecraft_server.1.17.0.jar

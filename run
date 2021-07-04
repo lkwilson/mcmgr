@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-mc_dir="$(dirname "$(realpath $0)")"
-cd "$mc_dir"
-. "$mc_dir/env.sh"
+this_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+cd "$this_dir"
+. "$this_dir/env.sh"
 
-if ! tmux has-session -t $tmux_sesh &>/dev/null; then
-    echo "Starting server"
-    tmux new -d -s $tmux_sesh "$mc_dir/start"
+if ! tmux has-session -t "$mc_server_id" &>/dev/null; then
+    echo "Starting $mc_server_id"
+    tmux new -d -s "$mc_server_id" "./start"
 else
-    echo "Server already exists"
+    echo "$mc_server_id already exists"
 fi

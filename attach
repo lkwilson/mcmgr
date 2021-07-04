@@ -5,9 +5,7 @@ cd "$this_dir"
 . "$this_dir/env.sh"
 
 if tmux has-session -t "$mc_server_id" &>/dev/null; then
-    echo "Stopping $mc_server_id"
-    tmux send-keys -t "$mc_server_id" "stop" Enter
+  tmux attach "$mc_server_id"
 else
-    echo "$mc_server_id not running."
+  echo "$mc_server_id is not running"
 fi
-
