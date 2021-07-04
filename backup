@@ -1,0 +1,28 @@
+#!/bin/bash
+
+mc_dir="$(dirname "$(realpath $0)")"
+cd "$mc_dir"
+. "$mc_dir/env.sh"
+
+if [ "$1" == 'mute' ]; then
+    null_pipe='&>/dev/null'
+fi
+
+if tmux has-session -t $tmux_sesh &>/dev/null; then
+    tmux send-keys -t $tmux_sesh "say Performing backup" Enter $null_pipe
+    tmux send-keys -t $tmux_sesh "save-all" Enter $null_pipe
+    tmux send-keys -t $tmux_sesh "save-off" Enter $null_pipe
+    tmux send-keys -t $tmux_sesh "say Backup started" Enter $null_pipe
+fi
+
+~op/bin/syn push -d $null_pipe
+ssh core "cd $bak_dir && git add -A && git commit -m 'Backup'" $null_pipe
+pushd .git $null_pipe
+~op/bin/syn pull -d $null_pipe
+popd $null_pipe
+
+if tmux has-session -t $tmux_sesh &>/dev/null; then
+    tmux send-keys -t $tmux_sesh "save-on" Enter $null_pipe
+    tmux send-keys -t $tmux_sesh "say Backup complete" Enter $null_pipe
+fi
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mc_dir="$(dirname "$(realpath $0)")"
+cd "$mc_dir"
+. "$mc_dir/env.sh"
+
+rm -rf .git
+git init
+git add -A
+git commit -m "Initial commit"

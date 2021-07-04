@@ -2,6 +2,16 @@
 
 A python minecraft manager
 
+# Setup
+
+Use run to start the server
+Use start to start the server in the current terminal
+Use backup to create a backup of the world (it doesn't have to be running)
+
+To make copy, set env.sh. Use server.properties as example of using new version
+of minecraft. Create and setup new backup location. Change .syn. You only have
+to copy world if you want to make a copy of another world or use an old world.
+
 # Java Dependency
 
 First, you need a new enough version of java.

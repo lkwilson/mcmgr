@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+mc_dir="$(dirname "$(realpath $0)")"
+cd "$mc_dir"
+. "$mc_dir/env.sh"
+
+java -Xmx1024M -Xms1024M -jar "$mc_jar" nogui

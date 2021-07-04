@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mc_dir="$(dirname "$(realpath $0)")"
+cd "$mc_dir"
+. "$mc_dir/env.sh"
+
+if ! tmux has-session -t $tmux_sesh &>/dev/null; then
+    echo "Starting server"
+    tmux new -d -s $tmux_sesh "$mc_dir/start"
+else
+    echo "Server already exists"
+fi

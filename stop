@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mc_dir="$(dirname "$(realpath $0)")"
+cd "$mc_dir"
+. "$mc_dir/env.sh"
+
+if tmux has-session -t "$tmux_sesh" &>/dev/null; then
+    echo "Stopping minecraft server."
+    tmux send-keys -t "$tmux_sesh" "stop" Enter
+else
+    echo "Minecraft server not running."
+fi
+
