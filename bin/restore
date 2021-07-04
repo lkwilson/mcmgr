@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+script_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+mc_dir="$(dirname "$script_dir")"
+cd "$mc_dir"
+source ./env.sh
+
+usage() {
+  echo "Usage: $0 {restore point}"
+  echo 
+  echo "    Use list to list restore points"
+}
+
+if [ $# -ne 1 ]; then
+  usage >&2
+  exit 1
+fi
+restore_point="$1"
+full_path_restore_point="$mc_root_backup_dir/$mc_server_id/$restore_point"
+
+if [ ! -f "$full_path_restore_point" ]; then
+  echo "Error: Invalid restore point" >&2
+  usage >&2
+  exit 1
+fi
+
+if tmux has-session -t "$mc_server_id" &>/dev/null; then
+  echo "Error: Attempting to restore server while its running." >&2
+  exit 1
+fi
+
+./bkup/restore "$full_path_restore_point"
