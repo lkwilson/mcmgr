@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-this_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-cd "$this_dir"
-. "$this_dir/env.sh"
-
-exec java -Xmx1024M -Xms1024M -jar "$mc_server_jar" nogui
