@@ -8,6 +8,9 @@ First, install dependencies. See below.
 
 Then, set values in the env.sh file.
 
+Then, run ./status to make sure the backup location and java jar look fine. You
+should only see the backup doesn't exist warning.
+
 Then, run ./run
 
 To check the status, run ./attach
@@ -62,7 +65,13 @@ Output the console of the currently running server.
 
 ## `send`
 
-Send a single command to the server. This is useful for quick things and for avoiding interacting with the server.
+Send a single command to the server. This is useful for quick things and for
+avoiding interacting with the server.
+
+## `status`
+
+Output status for the current server. This is a good check to make sure the
+env.sh is correct.
 
 # Backups
 
