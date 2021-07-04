@@ -1,6 +1,7 @@
 # mcmgr
 
-A minecraft server template directory with bash scripts to start, backup, restore, and stop it.
+A minecraft server template directory with bash scripts to start, backup,
+restore, and stop it.
 
 # Setup
 
@@ -18,17 +19,17 @@ To check the status, run ./attach
 You will be dropped into the tmux session. Press 'Ctrl-b' then 'd' to detach
 from the tmux session.
 
-## `mc_server_id`
+#### `mc_server_id`
 
 The unique id for the server. This makes it possible to have multiple servers
 running at once.
 
-## `mc_root_backup_dir`
+#### `mc_root_backup_dir`
 
 A location for minecraft backups. The backup for this specific server will be
 located in `$mc_root_backup_dir/$mc_server_id`
 
-## `mc_server_jar`
+#### `mc_server_jar`
 
 The minecraft server.jar file. It's recommended to put these in a single folder,
 and each server can use the same one.
@@ -39,36 +40,36 @@ All scripts can be started from anywhere. They will locate themselves and cd
 into the script's directory. They assume their directory is where the minecraft
 server is.
 
-## `run`
+#### `run`
 
 Starts the server.
 
-## `stop`
+#### `stop`
 
 Stops the server.
 
-## `start`
+#### `start`
 
 Starts the server in the current terminal. This is good for testing, but `run` should be preferred.
 
-## `attach`
+#### `attach`
 
 Attach to the server if it's running. This is used to gain access to the minecraft terminal.
 
-## `backup`
+#### `backup`
 
 Create a backup in the specified backup directory.
 
-## `console`
+#### `console`
 
 Output the console of the currently running server.
 
-## `send`
+#### `send`
 
 Send a single command to the server. This is useful for quick things and for
 avoiding interacting with the server.
 
-## `status`
+#### `status`
 
 Output status for the current server. This is a good check to make sure the
 env.sh is correct.
@@ -130,8 +131,8 @@ apt-get install -y tmux
 
 ### tips
 
-Close tmux: ctrl-b + d
-Attach to any tmux session: `tmux a`
+- Close tmux: ctrl-b + d
+- Attach to any tmux session: `tmux a`
 
 ## Java
 
