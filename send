@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+this_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+cd "$this_dir"
+. "$this_dir/env.sh"
+
+if tmux has-session -t "$mc_server_id" &>/dev/null; then
+  tmux send-keys -t "$mc_server_id" "$*" Enter
+else
+  echo "$mc_server_id is not running"
+fi

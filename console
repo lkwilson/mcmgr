@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+this_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+cd "$this_dir"
+. "$this_dir/env.sh"
+
+if tmux has-session -t "$mc_server_id" &>/dev/null; then
+  if [ -f ./logs/latest.log ]; then
+    cat ./logs/latest.log
+    exit 0
+  else
+    echo "$mc_server_id has no logs" >&2
+    exit 2
+  fi
+else
+  echo "$mc_server_id is not running" >&2
+  exit 1
+fi
