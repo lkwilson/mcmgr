@@ -7,7 +7,7 @@ source ./env.sh
 
 if ! tmux has-session -t "$mc_server_id" &>/dev/null; then
     echo "Starting $mc_server_id"
-    tmux new -d -s "$mc_server_id" "./start"
+    tmux new -d -s "$mc_server_id" "./bin/start"
 else
     echo "$mc_server_id already exists"
 fi

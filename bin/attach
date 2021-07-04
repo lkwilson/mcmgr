@@ -6,7 +6,7 @@ cd "$mc_dir"
 source ./env.sh
 
 if tmux has-session -t "$mc_server_id" &>/dev/null; then
-  tmux attach "$mc_server_id"
+  tmux attach -t "$mc_server_id"
 else
   echo "$mc_server_id is not running"
 fi
