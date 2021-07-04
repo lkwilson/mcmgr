@@ -1,6 +1,6 @@
 # mcmgr
 
-A python minecraft manager
+A minecraft server template directory with bash scripts to start, backup, restore, and stop it.
 
 # Setup
 
