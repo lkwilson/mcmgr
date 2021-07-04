@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+this_dir="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+cd "$this_dir"
+. "$this_dir/env.sh"
+
+if tmux has-session -t "$mc_server_id" &>/dev/null; then
+  running=yes
+else
+  running=no
+fi
+
+last_log=NEVER
+for i in "$mc_root_backup_dir/$mc_server_id"/backup_*.tar; do
+  if [ -e "$i" ]; then
+    last_log="$i"
+  fi
+done
+
+
+echo "Server ID: $mc_server_id"
+echo "Backup Dir: $mc_root_backup_dir/$mc_server_id"
+echo "Last backup: $last_log"
+echo "Currently Running: $running"
+echo "Java jar: $mc_server_jar"
+echo
+
+if [ ! -d "$mc_root_backup_dir" ]; then
+  echo "Warning: Root backup dir doesn't exist. That means no backups for any server have ever been created."
+elif [ ! -d "$mc_root_backup_dir/$mc_server_id" ]; then
+  echo "Warning: Backup dir doesn't exist. That means no backups exist for this server."
+fi
+
+if [ ! -f "$mc_server_jar" ]; then
+  echo "Warning: The java jar doesn't exist."
+fi
